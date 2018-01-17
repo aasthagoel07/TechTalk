@@ -1,5 +1,9 @@
 ﻿var LoginApp = angular.module("TechTalk", [])
-LoginApp.controller("ALoginController", ['$scope', '$http', function ($scope, $http) {
+//LoginApp.config(['$routeProvider', function ($routeProvider) {
+//    $routeProvider
+//    .when('/')
+//}]);
+LoginApp.controller("ALoginController", ['$scope','$window','$http', function ($scope,$window, $http) {
     $scope.username = '';
     $scope.password = '';
     $scope.responseMessage = '';
@@ -21,7 +25,7 @@ LoginApp.controller("ALoginController", ['$scope', '$http', function ($scope, $h
         $http.post('/api/Login/LoginCheck', userdata, config).then(function (successResponse) {
            
             $scope.isSubmitButtonDisabled = true;
-            //$window.location.href = 'Views/adminPortal.html'
+            $window.location.href = '../View/adminPortal.html'
             alert("Login Successfull");
         }, function (errorResponse) {
           
