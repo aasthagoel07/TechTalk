@@ -11,8 +11,9 @@ namespace TechTalk.Controllers
     public class LoginController : ApiController
     {
         private TechtalkDbEntities db = new TechtalkDbEntities();
-
-        public IHttpActionResult Login(Admin_Login user)
+       
+        [HttpPost]
+        public IHttpActionResult LoginCheck(Admin_Login user)
         {
             Admin_Login foundUser = db.Admin_Login.Where(a => a.Username.Equals(user.Username)).FirstOrDefault();
             if (foundUser == null)
@@ -21,9 +22,7 @@ namespace TechTalk.Controllers
             }
             else if (foundUser != null && user.Password.Equals(foundUser.Password))
             {
-                //if (foundUser.UserType == "admin")
-                //{
-                //    //Return admin
+
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.Accepted, "admin"));
                 //        }
                 //        else
